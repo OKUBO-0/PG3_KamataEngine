@@ -1,16 +1,20 @@
 #include <Novice.h>
+#include "Scene.h"
 
+// ウィンドウタイトル
 const char kWindowTitle[] = "LE2C_04_オオクボ_タク";
 
-// Windowsアプリでのエントリーポイント(main関数)
+// キー入力結果を受け取る箱
+char keys[256] = { 0 };
+char preKeys[256] = { 0 };
+
 int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 
 	// ライブラリの初期化
 	Novice::Initialize(kWindowTitle, 1280, 720);
 
-	// キー入力結果を受け取る箱
-	char keys[256] = {0};
-	char preKeys[256] = {0};
+	// シーンの初期化
+	Scene scene;
 
 	// ウィンドウの×ボタンが押されるまでループ
 	while (Novice::ProcessMessage() == 0) {
@@ -21,21 +25,11 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 		memcpy(preKeys, keys, 256);
 		Novice::GetHitKeyStateAll(keys);
 
-		///
-		/// ↓更新処理ここから
-		///
+		/// 更新処理
+		scene.Update(keys);
 
-		///
-		/// ↑更新処理ここまで
-		///
-
-		///
-		/// ↓描画処理ここから
-		///
-
-		///
-		/// ↑描画処理ここまで
-		///
+		/// 描画処理
+		scene.Draw();
 
 		// フレームの終了
 		Novice::EndFrame();
