@@ -1,15 +1,17 @@
 ﻿#include "TitleScene.h"
-#include "SceneManager.h"
-#include "StageScene.h"
-#include <Novice.h>
 
-void TitleScene::Update(SceneManager* manager) {
-    // スペースキーでステージシーンに切り替え
-    if (Novice::IsPressKey(DIK_SPACE)) {
-        manager->ChangeScene(new StageScene());
-    }
+void TitleScene::Initialize() {}
+
+void TitleScene::Update(char* keys, char* preKeys) {
+
+	//スペースキーを押した瞬間
+	if (keys[DIK_SPACE] && preKeys[DIK_SPACE] == false) {
+		//シーンをSTAGEに切り替える
+		IScene::sceneNo = STAGE;
+	}
 }
 
 void TitleScene::Draw() {
-    Novice::ScreenPrintf(100, 100, "Title Scene: Press SPACE to Start", 0xFFFFFF);
+	Novice::ScreenPrintf(0, 0, "Title Scene");
+	Novice::ScreenPrintf(0, 30, "Push Space");
 }

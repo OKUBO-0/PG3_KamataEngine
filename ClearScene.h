@@ -1,8 +1,16 @@
 ﻿#pragma once
-#include "Scene.h"
+#include "IScene.h"
 
-class ClearScene : public Scene {
-public:
-    void Update(SceneManager* manager) override; // クリアシーンの更新
-    void Draw() override; // クリアシーンの描画
+class ClearScene : public IScene
+{
+public://メンバ関数
+
+	///初期化処理
+	void Initialize() override;
+
+	///更新処理
+	void Update(char* keys, char* preKeys) override;
+
+	///描画処理
+	void Draw() override;
 };

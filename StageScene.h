@@ -1,13 +1,20 @@
 ﻿#pragma once
-#include "Scene.h"
+#include "IScene.h"
 
-class StageScene : public Scene {
-private:
-    int enemyHp; // 敵のHP
-    bool isEnemyAlive; // 敵の生存フラグ
+/// <summary>
+/// ISceneクラスを継承したStageSceneを宣言
+/// </summary>
+class StageScene : public IScene
+{
+public://メンバ関数
 
-public:
-    StageScene(); // コンストラクタ
-    void Update(SceneManager* manager) override; // ステージシーンの更新
-    void Draw() override; // ステージシーンの描画
+	///初期化処理
+	void Initialize() override;
+
+	///更新処理
+	void Update(char* keys, char* preKeys) override;
+
+	///描画処理
+	void Draw() override;
+
 };

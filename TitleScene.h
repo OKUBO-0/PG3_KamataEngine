@@ -1,8 +1,20 @@
 ﻿#pragma once
-#include "Scene.h"
+#include "IScene.h"
 
-class TitleScene : public Scene {
-public:
-    void Update(SceneManager* manager) override; // タイトルシーンの更新
-    void Draw() override; // タイトルシーンの描画
+/// <summary>
+/// ISceneクラスを継承したTitleSceneを宣言
+/// </summary>
+class TitleScene : public IScene
+{
+public://メンバ関数
+
+	///初期化処理
+	void Initialize() override;
+
+	///更新処理
+	void Update(char* keys, char* preKeys) override;
+
+	///描画処理
+	void Draw() override;
+
 };
